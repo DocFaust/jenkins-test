@@ -37,7 +37,7 @@ pipeline {
             }
             post {
 			   always {
-				   step([$class: 'hudson.plugins.checkstyle.CheckStylePublisher', checkstyle: 'gitlist-PHP/build/logs/phpcs.xml'])
+				   recordIssues enabledForFailure: true, aggregatingResults: true, tool: checkStyle(pattern: 'checkstyle-result.xml')
 			   }
             }
        }
