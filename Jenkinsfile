@@ -33,7 +33,7 @@ pipeline {
         }
         stage ('Analysis') {
             steps {
-	                sh 'mvn -Dmaven.test.failure.ignore=true checkstyle:checkstyle pmd:pmd pmd:cpd findbugs:findbugs' 
+	                sh 'mvn -Dmaven.test.failure.ignore=true jxr:jxr checkstyle:checkstyle pmd:pmd pmd:cpd findbugs:findbugs' 
             }
             post {
 			   always {
