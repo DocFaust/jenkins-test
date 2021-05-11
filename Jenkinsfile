@@ -13,7 +13,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing...'
+                sh 'mvn verify'
+                junit '**/target/*.xml'
             }
         }
         stage('Deploy') {
