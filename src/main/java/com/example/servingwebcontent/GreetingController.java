@@ -10,16 +10,13 @@ public class GreetingController {
 
 	/**
 	 * Greeting Methode.
-	 * @param name Name 
+	 * 
+	 * @param name  Name
 	 * @param model Model
 	 * @return Path
 	 */
 	@GetMapping("/greeting")
-	public String greeting(
-			@RequestParam(name = "name", 
-			required = false, 
-			defaultValue = "World") 
-			final String name,
+	public String greeting(@RequestParam(name = "name", required = false, defaultValue = "World") final String name,
 			final Model model) {
 		model.addAttribute("name", name);
 		return "greeting";
