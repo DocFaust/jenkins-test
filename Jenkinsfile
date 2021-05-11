@@ -7,6 +7,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn package'
+                println "this is GROOOOVYYY"
             }
         }
         stage('Test') {
