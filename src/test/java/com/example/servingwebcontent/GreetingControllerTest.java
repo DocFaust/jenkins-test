@@ -15,7 +15,7 @@ class GreetingControllerTest {
 	private GreetingController controller;
 	
 	@Test
-	public void contextLoads() {
+	void contextLoads() {
 		assertThat(controller).isNotNull();
 	}
 	
