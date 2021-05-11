@@ -31,16 +31,19 @@ pipeline {
                 sh 'mvn sonar:sonar   -Dsonar.projectKey=jenkins-test   -Dsonar.host.url=http://localhost:9000   -Dsonar.login=6b8ed445678c9ea91d1a2edf03e98569f333c65b'
             }
         }
-        stage ('Checkstyle') {
+        stage ('Analysis') {
             steps {
-	                sh 'mvn -Dmaven.test.failure.ignore=true checkstyle:checkstyle' 
+	                sh 'mvn -Dmaven.test.failure.ignore=true checkstyle:checkstyle pmd:pmd pmd:cpd findbugs:findbugs' 
             }
             post {
 			   always {
-				   recordIssues(
-    				enabledForFailure: true, aggregatingResults: true, 
-    			tools: [java(), checkStyle(pattern: 'checkstyle-result.xml', reportEncoding: 'UTF-8')]
-					)
+				   junit testResults: '**/target/surefire-reports/TEST-*.xml'
+
+		            recordIssues enabledForFailure: true, tools: [mavenConsole(), java(), javaDoc()]
+		            recordIssues enabledForFailure: true, tool: checkStyle()
+		            recordIssues enabledForFailure: true, tool: spotBugs()
+		            recordIssues enabledForFailure: true, tool: cpd(pattern: '**/target/cpd.xml')
+		            recordIssues enabledForFailure: true, tool: pmdParser(pattern: '**/target/pmd.xml')
 			   }
             }
        }
