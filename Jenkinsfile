@@ -37,7 +37,7 @@ pipeline {
             }
             post {
 			   always {
-				   recordIssues enabledForFailure: true, aggregatingResults: true, tool: checkStyle(pattern: 'checkstyle-result.xml')
+				   recordIssues enabledForFailure: true, aggregatingResults: true, tools: checkStyle(pattern: 'checkstyle-result.xml')
 			   }
             }
        }
