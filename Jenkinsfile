@@ -8,6 +8,7 @@ pipeline {
             steps {
                 sh 'mvn package'
                 println "this is GROOOOVYYY"
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
             }
         }
         stage('Test') {
