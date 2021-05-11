@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class GreetingController {
 
+	/**
+	 * Greeting Methode.
+	 * @param name Name 
+	 * @param model Model
+	 * @return Path
+	 */
 	@GetMapping("/greeting")
 	public String greeting(
 			@RequestParam(name = "name", 
