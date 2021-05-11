@@ -25,6 +25,17 @@ pipeline {
                 sh 'mvn sonar:sonar   -Dsonar.projectKey=jenkins-test   -Dsonar.host.url=http://localhost:9000   -Dsonar.login=6b8ed445678c9ea91d1a2edf03e98569f333c65b'
             }
         }
+        stage ('Checkstyle') {
+            steps {
+	                sh 'mvn -Dmaven.test.failure.ignore=true checkstyle:checkstyle' 
+            }
+            post {
+			   always {
+				   step([$class: 'hudson.plugins.checkstyle.CheckStylePublisher', checkstyle: 'gitlist-PHP/build/logs/phpcs.xml'])
+			   }
+            }
+       }
+        
         stage('Deploy') {
             steps {
                 echo "Deploying ${params.Greeting}"
