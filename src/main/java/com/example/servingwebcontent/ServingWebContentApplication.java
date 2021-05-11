@@ -7,14 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ServingWebContentApplication {
 
 	/**
-	 * Private constructor.
-	 */
-	private ServingWebContentApplication() {
-		//Checkstyle wills so
-	}
-	
-	/**
 	 * Main Method.
+	 * 
 	 * @param args Arguments
 	 */
 	public static void main(final String[] args) {
