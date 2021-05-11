@@ -3,6 +3,9 @@ pipeline {
 	tools { 
         maven 'Maven 3.8.1' 
     }
+    parameters {
+        string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
+    }
     stages {
         stage('Build') {
             steps {
@@ -19,7 +22,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                echo "Deploying ${params.Greeting}"
+
             }
         }
     }
